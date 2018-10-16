@@ -1,6 +1,11 @@
 BSD 3-Clause License
 
 Copyright (c) 2018, Timothy Yu
+
+"A deep learning framework for financial time series using stacked autoencoders and long-short term memory", 
+Wei Bao, Jun Yue, Yulei Rao, Copyright (c) 2017 under Creative Commons Attribution License,
+[https://doi.org/10.1371/journal.pone.0180944]
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
