@@ -1,31 +1,33 @@
 name: bao-yue-rao
 channels:
   - conda-forge
+  - anaconda
   - defaults
 dependencies:
-  - ca-certificates=2018.10.15=ha4d7672_0
-  - certifi=2018.10.15=py36_1000
-  - freetype=2.8.1=vc14_0
-  - hdf5=1.10.2=vc14_0
-  - icu=58.2=vc14_0
-  - jpeg=9b=vc14_2
-  - libpng=1.6.34=vc14_0
-  - libprotobuf=3.5.2=vc14_0
-  - libsodium=1.0.16=vc14_0
+  - ca-certificates=2018.03.07=0
+  - certifi=2018.10.15=py36_0
+  - freetype=2.9.1=ha9979f8_1
+  - hdf5=1.10.2=hac2f561_1
+  - icu=58.2=ha66f8fd_1
+  - jpeg=9b=hb83a4c4_2
+  - libpng=1.6.35=h2a8f88b_0
+  - libprotobuf=3.6.1=h7bd577a_0
+  - libsodium=1.0.16=h9d3ae62_0
+  - openssl=1.0.2p=hfa6e2cd_0
+  - protobuf=3.6.1=py36h33f27b4_0
+  - sqlite=3.25.3=he774522_0
+  - vc=14.1=h21ff451_3
+  - vs2015_runtime=15.5.2=3
+  - xlrd=1.1.0=py36_1
+  - yaml=0.1.7=hc54c509_2
+  - zeromq=4.2.5=he025d50_1
+  - zlib=1.2.11=h62dcd97_3
   - matplotlib=2.2.2=py36_1
   - mistune=0.8.4=py36hfa6e2cd_1000
-  - openssl=1.0.2p=hfa6e2cd_1001
-  - protobuf=3.5.2=py36_vc14_0
   - python=3.6.6=he025d50_0
   - pywavelets=1.0.1=py36h452e1ab_1000
-  - qt=5.6.2=vc14_1
-  - sqlite=3.22.0=vc14_0
   - tensorboard=1.9.0=py36_0
   - tensorflow=1.9.0=py36_0
-  - vc=14=0
-  - yaml=0.1.7=vc14_0
-  - zeromq=4.2.5=vc14_2
-  - zlib=1.2.11=vc14_0
   - _tflow_select=2.2.0=eigen
   - absl-py=0.6.1=py36_0
   - astor=0.7.1=py36_0
@@ -89,6 +91,7 @@ dependencies:
   - pywinpty=0.5.4=py36_0
   - pyyaml=3.13=py36hfa6e2cd_0
   - pyzmq=17.1.2=py36hfa6e2cd_0
+  - qt=5.6.2=vc14h6f8c307_12
   - qtconsole=4.4.2=py36_0
   - scikit-learn=0.20.0=py36heebcf9a_1
   - scipy=1.1.0=py36h4f6bf74_1
@@ -102,7 +105,6 @@ dependencies:
   - testpath=0.4.2=py36_0
   - tornado=5.1.1=py36hfa6e2cd_0
   - traitlets=4.3.2=py36h096827d_0
-  - vs2015_runtime=14.15.26706=h3a45250_0
   - wcwidth=0.1.7=py36h3d5aa90_0
   - webencodings=0.5.1=py36_1
   - werkzeug=0.14.1=py36_0
