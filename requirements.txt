@@ -5,6 +5,7 @@ bleach==3.0.2
 certifi==2018.10.15
 colorama==0.4.0
 cycler==0.10.0
+Cython==0.29
 decorator==4.3.0
 entrypoints==0.2.3
 gast==0.2.0
@@ -41,7 +42,7 @@ parso==0.3.1
 pickleshare==0.7.5
 prometheus-client==0.4.2
 prompt-toolkit==2.0.7
-protobuf==3.6.1
+protobuf==3.5.2
 Pygments==2.2.0
 pyparsing==2.2.2
 python-dateutil==2.7.5
@@ -68,3 +69,4 @@ Werkzeug==0.14.1
 widgetsnbextension==3.4.2
 wincertstore==0.2
 xlrd==1.1.0
+XlsxWriter==1.1.2
