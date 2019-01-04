@@ -24,4 +24,5 @@ Repository of an existing attempt to replicate above paper in PyTorch, checked o
 `/documentation/citation`:
 
 .ris (EndNote, Reference Manager, ProCite, RefWork) compatible 
+
 .bib (BibDesk, LaTeX) compatible
