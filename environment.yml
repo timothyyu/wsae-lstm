@@ -1,4 +1,4 @@
-name: bao-yue-rao
+name: wsae-lstm
 channels:
   - anaconda
   - conda-forge
@@ -114,5 +114,5 @@ dependencies:
   - webencodings=0.5.1=py36_1
   - werkzeug=0.14.1=py36_0
   - wincertstore=0.2=py36h7fe50ca_0
-prefix: C:\Users\tyu-dev\Anaconda3\envs\bao-yue-rao
+prefix: C:\Users\tyu-dev\Anaconda3\envs\wsae-lstm
 

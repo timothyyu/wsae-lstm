@@ -1,0 +1,22 @@
+TY  - JOUR
+T1  - Forecasting stock markets using wavelet transforms and recurrent neural networks: An integrated system based on artificial bee colony algorithm
+AU  - Hsieh, Tsung-Jung
+AU  - Hsiao, Hsiao-Fen
+AU  - Yeh, Wei-Chang
+JO  - Applied Soft Computing
+VL  - 11
+IS  - 2
+SP  - 2510
+EP  - 2525
+PY  - 2011
+DA  - 2011/03/01/
+T2  - The Impact of Soft Computing for the Progress of Artificial Intelligence
+SN  - 1568-4946
+DO  - https://doi.org/10.1016/j.asoc.2010.09.007
+UR  - http://www.sciencedirect.com/science/article/pii/S1568494610002565
+KW  - Wavelet transform
+KW  - Stepwise regression-correlation selection (SRCS)
+KW  - Recurrent neural network (RNN)
+KW  - Artificial bee colony algorithm (ABC)
+AB  - This study presents an integrated system where wavelet transforms and recurrent neural network (RNN) based on artificial bee colony (abc) algorithm (called ABC-RNN) are combined for stock price forecasting. The system comprises three stages. First, the wavelet transform using the Haar wavelet is applied to decompose the stock price time series and thus eliminate noise. Second, the RNN, which has a simple architecture and uses numerous fundamental and technical indicators, is applied to construct the input features chosen via Stepwise Regression-Correlation Selection (SRCS). Third, the Artificial Bee Colony algorithm (ABC) is utilized to optimize the RNN weights and biases under a parameter space design. For illustration and evaluation purposes, this study refers to the simulation results of several international stock markets, including the Dow Jones Industrial Average Index (DJIA), London FTSE-100 Index (FTSE), Tokyo Nikkei-225 Index (Nikkei), and Taiwan Stock Exchange Capitalization Weighted Stock Index (TAIEX). As these simulation results demonstrate, the proposed system is highly promising and can be implemented in a real-time trading system for forecasting stock prices and maximizing profits.
+ER  - 
