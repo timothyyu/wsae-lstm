@@ -37,4 +37,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+#Vscode
+.vscode
+
 # End of https://www.gitignore.io/api/macos,jupyternotebook
