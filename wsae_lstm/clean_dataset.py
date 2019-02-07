@@ -1,5 +1,6 @@
 # Load and clean raw dataset from 'data/raw' folder 
-    # Cleaned data stored in 'data/interim' folder 
+    # Intermediate cleaned data stored in 'data/interim' folder
+    # Final cleaned data stored in 'data/processed' folder
 
 # Imports (External)
 import numpy as np
@@ -8,9 +9,10 @@ import datetime as dt
 import xlrd
 import xlsxwriter
 from collections import OrderedDict
-
 import sys
-sys.path.append('../')  
+sys.path.append('../')
+# Imports (Internal)  
+from utils import frames_to_excel, dictmap_load, dictmap_datetime
 
 # Load in excel file and map each excel sheet to an ordered dict
 raw_xlsx_file = pd.ExcelFile("../data/raw/raw_data.xlsx")
@@ -136,16 +138,7 @@ dict_dataframes['djia index future data'].drop(columns=['time'],axis=1, inplace=
 #     print (item,"\n")
 #     print (dict_dataframes[item].info(verbose=False))
 
-# Save cleaned data to disk (both index data and futures in one xlsx sheet)
-def frames_to_excel(df_dict, path):
-    # frames_to_excel() source: https://stackoverflow.com/q/51696940
-    """Write dictionary of dataframes to separate sheets, within 
-        1 file."""
-    writer = pd.ExcelWriter(path, engine='xlsxwriter')
-    for tab_name, dframe in df_dict.items():
-        dframe.to_excel(writer, sheet_name=tab_name)
-    writer.save() 
-    
+# Save clean data to disk - index + futures data together
 frames_to_excel(dict_dataframes,"../data/interim/clean_data.xlsx")
 
 # Save clean data to disk - index data only
@@ -156,10 +149,7 @@ key_order = ['csi300 index data',
 's&p500 index data',
 'djia index data',
 ]
-list_of_tuples = [(key, dict_dataframes[key]) for key in key_order]
-dict_dataframes_index = OrderedDict(list_of_tuples)
-
-frames_to_excel(dict_dataframes_index,"../data/interim/clean_data_index.xlsx")
+frames_to_excel(dict_dataframes,"../data/interim/clean_data_index.xlsx",key_order)
 
 # Save clean data to disk - future data only
 key_order = [
@@ -170,7 +160,26 @@ key_order = [
 's&p500 index future data',
 'djia index future data',
 ]
-list_of_tuples = [(key, dict_dataframes[key]) for key in key_order]
-dict_dataframes_futures = OrderedDict(list_of_tuples)
+frames_to_excel(dict_dataframes,"../data/interim/clean_data_future.xlsx",key_order)
 
-frames_to_excel(dict_dataframes_futures,"../data/interim/clean_data_futures.xlsx")
+# Load in excel file with multiple sheets
+    # and map each excel sheet to an ordered dict (a dict of dataframes)
+# Convert date column in each dataframe in dict of dataframes 
+    # to datetime object for matplotlib, and set date column as index
+
+dict_dataframes= dictmap_load(path = "../data/interim/clean_data.xlsx")
+dict_dataframes_index = dictmap_load(path = "../data/interim/clean_data_index.xlsx")   
+dict_dataframes_future = dictmap_load(path = "../data/interim/clean_data_future.xlsx")
+dict_dataframes = dictmap_datetime(dict_dataframes)   
+dict_dataframes_index = dictmap_datetime(dict_dataframes_index)
+dict_dataframes_future = dictmap_datetime(dict_dataframes_future)
+
+# print("\n".join(list(dict_dataframes_index.keys())))
+# print("\n".join(list(dict_dataframes_future.keys())))
+# print(dict_dataframes_index['csi300 index data'].info())
+# print(dict_dataframes_future['csi300 index future data'].info())
+
+# Save final cleaned/processed data to `data/processed` folder
+frames_to_excel(dict_dataframes,"../data/processed/clean_data.xlsx")
+frames_to_excel(dict_dataframes_index,"../data/processed/clean_data_index.xlsx")
+frames_to_excel(dict_dataframes_future,"../data/processed/clean_data_future.xlsx")
