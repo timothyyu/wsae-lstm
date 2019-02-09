@@ -40,4 +40,10 @@ Temporary Items
 #Vscode
 .vscode
 
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
 # End of https://www.gitignore.io/api/macos,jupyternotebook
