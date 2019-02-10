@@ -5,6 +5,8 @@ import datetime as dt
 import xlrd
 import xlsxwriter
 from collections import OrderedDict
+from monthdelta import monthdelta
+import pickle
 import sys
 sys.path.append("../")  
 
@@ -32,4 +34,42 @@ def dictmap_datetime(dict_dataframes):
     for dataframe in dict_dataframes:
         dict_dataframes[dataframe]['date'] = pd.to_datetime(dict_dataframes[dataframe]['date'].astype(str), format='%Y%m%d')
         dict_dataframes[dataframe] = dict_dataframes[dataframe].set_index('date')
+    return dict_dataframes
+
+def interval_split(df):
+    dict_dataframes = {}
+    split_count = 24
+    month_increment = 0
+    interval_index = 1
+    
+    df = df.set_index(df['date'])
+    while split_count > 0:
+        front = df['date'][0] 
+        front = front + monthdelta(month_increment)
+        back = df['date'][0]+monthdelta(30) 
+        back = back + monthdelta(month_increment)
+        month_increment += 3
+        split_count -= 1
+        df_interval = pd.DataFrame(df[(df['date'] >= front) & (df['date'] <= back)])
+        dict_dataframes[interval_index] = df_interval
+        interval_index += 1
+        #print(front,back)
+    return dict_dataframes
+
+def dict_interval_split(dict_dataframes):
+    subdict_dataframes = {}
+    for dataframe in dict_dataframes:
+        subdict_dataframes[dataframe] = interval_split(dict_dataframes[dataframe])
+    return subdict_dataframes
+
+def pickle_save(dict_dataframes,path_filename):
+    filename = path_filename
+    outfile = open(filename,'wb')
+    pickle.dump(dict_dataframes,outfile)
+    outfile.close()
+
+def pickle_load(dict_dataframes,path_filename):
+    infile = open(path_filename,'rb')
+    dict_dataframes = pickle.load(infile)
+    infile.close()
     return dict_dataframes

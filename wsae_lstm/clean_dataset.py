@@ -19,7 +19,7 @@ raw_xlsx_file = pd.ExcelFile("../data/raw/raw_data.xlsx")
 dict_dataframes = pd.read_excel(raw_xlsx_file,sheet_name = None)
 #print(type(dict_dataframes))
 
-# Convert ordered of dataframes to regular dict
+# Convert ordered dict of dataframes to regular dict
 dict_dataframes = dict(dict_dataframes)
 #print(type(dict_dataframes)()
 
