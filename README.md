@@ -14,7 +14,7 @@ https://figshare.com/articles/Raw_Data/5028110
 
 ### `mlpanda/DeepLearning_Financial`
 
-Repository of an existing attempt to replicate above paper in PyTorch, checked out as git submodule for reference in `submodules` folder:
+Repository of an existing attempt to replicate above paper in PyTorch, checked out as a `git-subrepo` for reference in `submodules` folder:
 
 `mlpanda/DeepLearning_Financial: https://github.com/mlpanda/DeepLearning_Financial`
 
