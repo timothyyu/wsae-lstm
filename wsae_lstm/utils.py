@@ -54,6 +54,8 @@ def interval_split(df):
         split_count -= 1
         df_interval = pd.DataFrame(df[(df['date'] >= front) & (df['date'] <= back)])
         dict_dataframes[interval_index] = df_interval
+        dict_dataframes[interval_index].drop(['date'],axis=1,inplace=True)
+
         interval_index += 1
         #print(front,back)
     return dict_dataframes
