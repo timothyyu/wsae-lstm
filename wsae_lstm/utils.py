@@ -37,6 +37,8 @@ def dictmap_datetime(dict_dataframes):
     return dict_dataframes
 
 def interval_split(df):
+    """Split dataframe contents into train/validate/test intervals as defined
+    in Bao, Yue, Rao (2017): 24 interval split."""
     dict_dataframes = {}
     split_count = 24
     month_increment = 0
@@ -57,6 +59,8 @@ def interval_split(df):
     return dict_dataframes
 
 def dict_interval_split(dict_dataframes):
+    """Apply 24-interval split to dictionary of dataframes; 
+    interval_split() function applied to each dataframe in dict object. """
     subdict_dataframes = {}
     for dataframe in dict_dataframes:
         subdict_dataframes[dataframe] = interval_split(dict_dataframes[dataframe])
@@ -68,7 +72,7 @@ def pickle_save(dict_dataframes,path_filename):
     pickle.dump(dict_dataframes,outfile)
     outfile.close()
 
-def pickle_load(dict_dataframes,path_filename):
+def pickle_load(path_filename):
     infile = open(path_filename,'rb')
     dict_dataframes = pickle.load(infile)
     infile.close()
