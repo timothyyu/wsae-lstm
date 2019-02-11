@@ -13,3 +13,8 @@ Mallat, S. (1989). A Theory for Multiresolution Signal Decomposition: The Wavele
 
 
 M Leavey, C & James, Malcolm & Summerscales, John & Sutton, R. (2003). An introduction to wavelet transforms: A tutorial approach. Insight. 45. 344-353. 10.1784/insi.45.5.344.52875. 
+
+
+
+Y. Chen, Z. Lin, X. Zhao, G. Wang and Y. Gu, "Deep Learning-Based Classification of Hyperspectral Data," in IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, vol. 7, no. 6, pp. 2094-2107, June 2014.
+doi: 10.1109/JSTARS.2014.2329330
