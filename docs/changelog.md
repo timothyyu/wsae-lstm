@@ -1,6 +1,6 @@
 # Changelog
 
-- creation of `data/pickled` folder for pickled data
+- creation of `data/pickled` folder for pickled data (i.e. pickled dataframes)
 - additional files added to `references` 
 - `README.md` update to reflect changes 
 - new functions in`utils.py`: `interval_split(), dict_interval_split(), pickle_save, pickle_load()` (refactored from `1d_train_test_split_exploration.ipynb`)
@@ -10,6 +10,8 @@
   - `from statsmodels.robust import mad`
   - `from scipy import signal`
 - wavelet transform exploration start in `1c_wavelet_draft_test_exploration.ipynb`
+- start of train-validate-test split implementation in`1f_tvt_split_exploration.ipynb`
+- double datetime index & datetime column fixed from `interval_split()` in `utils.py`
 
 ## v0.1.0
 - clean_dataset.py in `wsae_lstm` folder to clean raw dataset, output stored in `data/interim` folder (refactored from `notebooks\0_initial_data_exploration.ipynb` notebook)

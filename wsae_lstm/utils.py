@@ -11,7 +11,8 @@ import sys
 sys.path.append("../")  
 
 def frames_to_excel(dict_dataframes, path,key_order=None):
-    """Save cleaned data to disk; Write dictionary of dataframes to separate sheets, within 1 file. Optional key_order kwarg for dataframe/sheet order."""
+    """Save cleaned data to disk; Write dictionary of dataframes to separate sheets, within 1 file.
+     Optional key_order kwarg for dataframe/sheet order."""
     # frames_to_excel() source: https://stackoverflow.com/q/51696940
     if key_order is not None:
         list_of_tuples = [(key, dict_dataframes[key]) for key in key_order]
