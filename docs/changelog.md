@@ -1,5 +1,9 @@
 # Changelog
 
+- model abstract funnel diagram/illustration in `docs`
+
+## v0.1.1
+
 - creation of `data/pickled` folder for pickled data (i.e. pickled dataframes)
 - additional files added to `references` 
 - `README.md` update to reflect changes 
