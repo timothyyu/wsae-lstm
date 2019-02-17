@@ -21,8 +21,8 @@ from wsae_lstm.utils import dictmap_load
 from wsae_lstm.utils import interval_split,dict_interval_split
 from wsae_lstm.utils import pickle_save
 
-# Load clean data from data/processed folder
-dict_dataframes_index = dictmap_load(path = "../data/processed/clean_data_index.xlsx")  
+# Load clean data from data/interim folder
+dict_dataframes_index = dictmap_load(path = "../data/interim/clean_data_index.xlsx")  
 #print(dict_dataframes_index.keys())
 
 # Split each dataframe into 24 intervals/periods for train/validate/test split
@@ -30,4 +30,4 @@ dict_df_interval = dict_interval_split(dict_dataframes_index)
 #print(dict_df_interval.keys())
 
 # Save new dict of dataframes with interval splits to disk (using pickle)
-pickle_save(dict_df_interval,"../data/pickled/clean_data_index_interval")
+pickle_save(dict_df_interval,"../data/interim/clean_data_index_interval")

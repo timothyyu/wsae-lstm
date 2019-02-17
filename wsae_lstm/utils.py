@@ -71,7 +71,7 @@ def dict_interval_split(dict_dataframes):
 
 def pickle_save(dict_dataframes,path_filename):
     filename = path_filename
-    outfile = open(filename,'wb')
+    outfile = open(filename + '.pickle','wb')
     pickle.dump(dict_dataframes,outfile)
     outfile.close()
 

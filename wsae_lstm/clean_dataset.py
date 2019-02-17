@@ -179,7 +179,7 @@ dict_dataframes_future = dictmap_datetime(dict_dataframes_future)
 # print(dict_dataframes_index['csi300 index data'].info())
 # print(dict_dataframes_future['csi300 index future data'].info())
 
-# Save final cleaned/processed data to `data/processed` folder
-frames_to_excel(dict_dataframes,"../data/processed/clean_data.xlsx")
-frames_to_excel(dict_dataframes_index,"../data/processed/clean_data_index.xlsx")
-frames_to_excel(dict_dataframes_future,"../data/processed/clean_data_future.xlsx")
+# Save cleaned data with datetime index in data/interim folder - overwrite previous data
+frames_to_excel(dict_dataframes,"../data/interim/clean_data.xlsx")
+frames_to_excel(dict_dataframes_index,"../data/interim/clean_data_index.xlsx")
+frames_to_excel(dict_dataframes_future,"../data/interim/clean_data_future.xlsx")
