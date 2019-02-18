@@ -80,3 +80,28 @@ def pickle_load(path_filename):
     dict_dataframes = pickle.load(infile)
     infile.close()
     return dict_dataframes
+
+def tvt_split(df):
+    dict_dataframes = {}
+    train = df.index[0]
+    validate = df.index[0] + monthdelta(24) 
+    test = df.index[0] + monthdelta(27) 
+    test_end = df.index[0] + monthdelta(30) 
+    df_train = pd.DataFrame(df[(df.index >= train) & (df.index <= validate)])
+    df_validate = pd.DataFrame(df[(df.index >= validate) & (df.index <= test)])
+    df_test = pd.DataFrame(df[(df.index >= test) & (df.index <= test_end)])
+    dict_dataframes ={1:df_train,2:df_validate,3:df_test}
+    return dict_dataframes
+
+def dict_df_tvt_split(df):
+    subdict_dataframes = {}
+    for key in df:
+        subdict_dataframes[key] =tvt_split(df[key])
+    return subdict_dataframes
+
+def dd_tvt_split(dict_dataframes):
+    subdict_dataframes = {}
+    for key in dict_dataframes:
+        print(key)
+        subdict_dataframes[key] = dict_df_tvt_split(dict_dataframes[key])
+    return subdict_dataframes
