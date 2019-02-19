@@ -170,6 +170,7 @@ frames_to_excel(dict_dataframes,"../data/interim/clean_data_future.xlsx",key_ord
 dict_dataframes= dictmap_load(path = "../data/interim/clean_data.xlsx")
 dict_dataframes_index = dictmap_load(path = "../data/interim/clean_data_index.xlsx")   
 dict_dataframes_future = dictmap_load(path = "../data/interim/clean_data_future.xlsx")
+
 dict_dataframes = dictmap_datetime(dict_dataframes)   
 dict_dataframes_index = dictmap_datetime(dict_dataframes_index)
 dict_dataframes_future = dictmap_datetime(dict_dataframes_future)

@@ -35,6 +35,6 @@ pickle_save(dict_df_interval,"../data/interim/clean_data_index_interval")
 
 # Split dataset into train-validate-test intervals per split interval
     # Save to disk as `cdii_tvt_split.pickle`
-dict_dataframes_index=pickle_load(path_filename="../data/interim/clean_data_index_interval.pickle")
+dict_dataframes_index = pickle_load(path_filename="../data/interim/clean_data_index_interval.pickle")
 tvt_split_df = dd_tvt_split(dict_dataframes_index)
-pickle_save(tvt_split_df,"../data/interim/cdii_tvt_split.pickle")
+pickle_save(tvt_split_df,"../data/interim/cdii_tvt_split")

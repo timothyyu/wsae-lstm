@@ -82,6 +82,8 @@ def pickle_load(path_filename):
     return dict_dataframes
 
 def tvt_split(df):
+    """Train-Validate-Test split of data for continous training 
+    as defined in Bao et al., 2017."""
     dict_dataframes = {}
     train = df.index[0]
     validate = df.index[0] + monthdelta(24) 
@@ -94,12 +96,15 @@ def tvt_split(df):
     return dict_dataframes
 
 def dict_df_tvt_split(df):
+    """Subfunction of dd_tvt_split()."""
     subdict_dataframes = {}
     for key in df:
         subdict_dataframes[key] =tvt_split(df[key])
     return subdict_dataframes
 
 def dd_tvt_split(dict_dataframes):
+    """Train-Validate-Test split of data applied to each index dataset as defined
+    in Bao et al., 2017. """
     subdict_dataframes = {}
     for key in dict_dataframes:
         print(key)
