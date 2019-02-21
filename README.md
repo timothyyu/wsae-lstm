@@ -24,7 +24,8 @@ Repository package requirements/dependencies are defined in `requirements.txt` f
 
 ### `mlpanda/DeepLearning_Financial`:
 
-[Repository of an existing attempt to replicate above paper in PyTorch](mlpanda/DeepLearning_Financial: https://github.com/mlpanda/DeepLearning_Financial), checked out as a `git-subrepo` for reference in `submodules` folder. 
+Repository of an existing attempt to replicate above paper in PyTorch: [mlpanda/DeepLearning_Financial:](https://github.com/mlpanda/DeepLearning_Financial)
+, checked out as a `git-subrepo` for reference in `submodules` folder. 
 
 
 
