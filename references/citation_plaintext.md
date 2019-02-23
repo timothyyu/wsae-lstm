@@ -11,3 +11,6 @@ Y. Chen, Z. Lin, X. Zhao, G. Wang and Y. Gu, "Deep Learning-Based Classification
 doi: 10.1109/JSTARS.2014.2329330
 
 Frazier, Michael. (1995). A Friendly Guide to Wavelets (Gerald Kaiser). Siam Review - SIAM REV. 37. 10.1137/1037142. 
+
+Forecasting East Asian Indices Futures via a Novel Hybrid of Wavelet-PCA Denoising and Artificial Neural Network Models 
+Chan Phooi M’ng J, Mehralizadeh M (2016) Forecasting East Asian Indices Futures via a Novel Hybrid of Wavelet-PCA Denoising and Artificial Neural Network Models. PLOS ONE 11(6): e0156338. https://doi.org/10.1371/journal.pone.0156338
