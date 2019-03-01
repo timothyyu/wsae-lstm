@@ -22,6 +22,8 @@ from wsae_lstm.utils import interval_split,dict_interval_split
 from wsae_lstm.utils import pickle_load,pickle_save
 from wsae_lstm.utils import tvt_split,dict_df_tvt_split,dd_tvt_split
 
+print("split_dataset - Start...")
+
 # Load clean data from data/interim folder
 dict_dataframes_index = dictmap_load(path = "../data/interim/clean_data_index.xlsx")  
 #print(dict_dataframes_index.keys())
@@ -38,3 +40,5 @@ pickle_save(dict_df_interval,"../data/interim/clean_data_index_interval")
 dict_dataframes_index = pickle_load(path_filename="../data/interim/clean_data_index_interval.pickle")
 tvt_split_df = dd_tvt_split(dict_dataframes_index)
 pickle_save(tvt_split_df,"../data/interim/cdii_tvt_split")
+
+print("split_dataset - Finished.")

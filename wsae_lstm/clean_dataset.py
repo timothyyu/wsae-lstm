@@ -1,6 +1,5 @@
 # Load and clean raw dataset from 'data/raw' folder 
     # Intermediate cleaned data stored in 'data/interim' folder
-    # Final cleaned data stored in 'data/processed' folder
 
 # Imports (External)
 import numpy as np
@@ -9,11 +8,13 @@ import datetime as dt
 import xlrd
 import xlsxwriter
 from collections import OrderedDict
+
 import sys
 sys.path.append('../')
 # Imports (Internal)  
 from utils import frames_to_excel, dictmap_load, dictmap_datetime
 
+print("clean_dataset - Start...")
 # Load in excel file and map each excel sheet to an ordered dict
 raw_xlsx_file = pd.ExcelFile("../data/raw/raw_data.xlsx")
 dict_dataframes = pd.read_excel(raw_xlsx_file,sheet_name = None)
@@ -83,23 +84,23 @@ dict_dataframes = OrderedDict(list_of_tuples)
 for item in dict_dataframes:
     for subitem in dict_dataframes[item]:
         if 'matlab_time' in subitem:
-            print(subitem,"Dropped from ", item)
+            #print(subitem,"Dropped from ", item)
             dict_dataframes[item].drop(subitem,axis=1, inplace=True) 
         # Rename OHLC columns for consistency
         if 'open price' in subitem:
-            print(subitem,"Renamed from ", item)
+            #print(subitem,"Renamed from ", item)
             dict_dataframes[item].rename(columns={'open price':'open'},inplace=True)
         if 'high price' in subitem:
-            print(subitem,"Renamed from ", item)
+            #print(subitem,"Renamed from ", item)
             dict_dataframes[item].rename(columns={'high price':'high'},inplace=True)
         if 'low price' in subitem:
-            print(subitem,"Renamed from ", item)
+            #print(subitem,"Renamed from ", item)
             dict_dataframes[item].rename(columns={'low price':'low'},inplace=True)
         if 'closing price' in subitem:
-            print(subitem,"Renamed from ", item)
+            #print(subitem,"Renamed from ", item)
             dict_dataframes[item].rename(columns={'closing price':'close'},inplace=True)
         if 'close price' in subitem:
-            print(subitem,"Renamed from ", item)
+            #print(subitem,"Renamed from ", item)
             dict_dataframes[item].rename(columns={'close price':'close'},inplace=True)     
 
 # Rename date/ntime columns to date + drop mislabeled matlab_time columns
@@ -184,3 +185,5 @@ dict_dataframes_future = dictmap_datetime(dict_dataframes_future)
 frames_to_excel(dict_dataframes,"../data/interim/clean_data.xlsx")
 frames_to_excel(dict_dataframes_index,"../data/interim/clean_data_index.xlsx")
 frames_to_excel(dict_dataframes_future,"../data/interim/clean_data_future.xlsx")
+
+print("clean_dataset - Finished.")
