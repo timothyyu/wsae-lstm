@@ -49,7 +49,7 @@ def denoise_periods(dict_dataframes):
         ddi_denoised[index_name] = copy.deepcopy(dict_dataframes[index_name])
     for key, index_name in enumerate(ddi_denoised):    
         for index,value in enumerate(ddi_denoised[index_name]):
-            ddi_denoised[index_name][value][1]= waveletSmooth(ddi_denoised[index_name][value][1].values)
-            ddi_denoised[index_name][value][2] = waveletSmooth(ddi_denoised[index_name][value][2].values)
-            ddi_denoised[index_name][value][3] = waveletSmooth(ddi_denoised[index_name][value][3].values)
+            ddi_denoised[index_name][value][1]=  pd.DataFrame(waveletSmooth(ddi_denoised[index_name][value][1]))
+            ddi_denoised[index_name][value][2] = pd.DataFrame(waveletSmooth(ddi_denoised[index_name][value][2]))
+            ddi_denoised[index_name][value][3] = pd.DataFrame(waveletSmooth(ddi_denoised[index_name][value][3]))
     return ddi_denoised
