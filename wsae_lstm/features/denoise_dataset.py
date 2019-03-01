@@ -25,6 +25,7 @@ dict_dataframes_index=pickle_load(path_filename="../../data/interim/cdii_tvt_spl
 # [index data][period 1-24][train/validate/test]
     # Train [1], Validate [2], Test [3]
 
-ddi_denoised=denoise_periods(dict_dataframes_index)
-pickle_save(ddi_denoised,path_filename="../../data/interim/cdii_tvt_split_denoised")
+ddi_scaled,ddi_denoised = denoise_periods(dict_dataframes_index)
+pickle_save(ddi_scaled,path_filename="../../data/interim/cdii_tvt_split_scaled")
+pickle_save(ddi_denoised,path_filename="../../data/interim/cdii_tvt_split_scaled_denoised")
 print("denoise_dataset - Finished.")

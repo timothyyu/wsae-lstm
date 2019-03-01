@@ -12,6 +12,7 @@ import pywt
 from pywt import wavedec, waverec
 from scipy import signal
 from statsmodels.robust import mad
+from sklearn import preprocessing
 
 #Internal Imports
 
@@ -44,12 +45,35 @@ def waveletSmooth( x, wavelet="haar", level=2, declevel=2):
     return y
 
 def denoise_periods(dict_dataframes):
+    
+    ddi_scaled = dict()
     ddi_denoised= dict() 
     for key, index_name in enumerate(dict_dataframes):
         ddi_denoised[index_name] = copy.deepcopy(dict_dataframes[index_name])
-    for key, index_name in enumerate(ddi_denoised):    
+        ddi_scaled[index_name] = copy.deepcopy(dict_dataframes[index_name])
+    for key, index_name in enumerate(ddi_denoised): 
+        scaler = preprocessing.RobustScaler()
+
         for index,value in enumerate(ddi_denoised[index_name]):
-            ddi_denoised[index_name][value][1]=  pd.DataFrame(waveletSmooth(ddi_denoised[index_name][value][1]))
-            ddi_denoised[index_name][value][2] = pd.DataFrame(waveletSmooth(ddi_denoised[index_name][value][2]))
-            ddi_denoised[index_name][value][3] = pd.DataFrame(waveletSmooth(ddi_denoised[index_name][value][3]))
-    return ddi_denoised
+            
+            X_train = ddi_denoised[index_name][value][1]
+            X_train_scaled = scaler.fit_transform(X_train)
+            X_train_scaled = pd.DataFrame(X_train_scaled,columns=list(X_train.columns))
+            
+            X_val = ddi_denoised[index_name][value][2]
+            X_val_scaled = scaler.transform(X_val)
+            X_val_scaled = pd.DataFrame(X_val_scaled,columns=list(X_val.columns))
+            
+            X_test = ddi_denoised[index_name][value][3]
+            X_test_scaled = scaler.transform(X_test)
+            X_test_scaled = pd.DataFrame(X_test_scaled,columns=list(X_test.columns))
+            
+            ddi_scaled[index_name][value][1] = X_train_scaled
+            ddi_scaled[index_name][value][2] = X_val_scaled
+            ddi_scaled[index_name][value][3] = X_test_scaled
+            
+            ddi_denoised[index_name][value][1] = waveletSmooth(X_train_scaled)
+            ddi_denoised[index_name][value][2] = waveletSmooth(X_val_scaled)
+            ddi_denoised[index_name][value][3] = waveletSmooth(X_test_scaled)
+            
+    return ddi_scaled,ddi_denoised
