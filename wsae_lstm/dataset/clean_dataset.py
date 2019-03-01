@@ -10,13 +10,14 @@ import xlsxwriter
 from collections import OrderedDict
 
 import sys
-sys.path.append('../')
+#print(sys.path)
+sys.path.append('../..')
 # Imports (Internal)  
-from utils import frames_to_excel, dictmap_load, dictmap_datetime
+from wsae_lstm.utils import frames_to_excel, dictmap_load, dictmap_datetime
 
 print("clean_dataset - Start...")
 # Load in excel file and map each excel sheet to an ordered dict
-raw_xlsx_file = pd.ExcelFile("../data/raw/raw_data.xlsx")
+raw_xlsx_file = pd.ExcelFile("../../data/raw/raw_data.xlsx")
 dict_dataframes = pd.read_excel(raw_xlsx_file,sheet_name = None)
 #print(type(dict_dataframes))
 
@@ -140,7 +141,7 @@ dict_dataframes['djia index future data'].drop(columns=['time'],axis=1, inplace=
 #     print (dict_dataframes[item].info(verbose=False))
 
 # Save clean data to disk - index + futures data together
-frames_to_excel(dict_dataframes,"../data/interim/clean_data.xlsx")
+frames_to_excel(dict_dataframes,"../../data/interim/clean_data.xlsx")
 
 # Save clean data to disk - index data only
 key_order = ['csi300 index data',
@@ -150,7 +151,7 @@ key_order = ['csi300 index data',
 's&p500 index data',
 'djia index data',
 ]
-frames_to_excel(dict_dataframes,"../data/interim/clean_data_index.xlsx",key_order)
+frames_to_excel(dict_dataframes,"../../data/interim/clean_data_index.xlsx",key_order)
 
 # Save clean data to disk - future data only
 key_order = [
@@ -161,16 +162,17 @@ key_order = [
 's&p500 index future data',
 'djia index future data',
 ]
-frames_to_excel(dict_dataframes,"../data/interim/clean_data_future.xlsx",key_order)
+frames_to_excel(dict_dataframes,"../../data/interim/clean_data_future.xlsx",key_order)
 
 # Load in excel file with multiple sheets
     # and map each excel sheet to an ordered dict (a dict of dataframes)
 # Convert date column in each dataframe in dict of dataframes 
     # to datetime object for matplotlib, and set date column as index
 
-dict_dataframes= dictmap_load(path = "../data/interim/clean_data.xlsx")
-dict_dataframes_index = dictmap_load(path = "../data/interim/clean_data_index.xlsx")   
-dict_dataframes_future = dictmap_load(path = "../data/interim/clean_data_future.xlsx")
+#print(sys.path)
+dict_dataframes= dictmap_load(path = "../../data/interim/clean_data.xlsx")
+dict_dataframes_index = dictmap_load(path = "../../data/interim/clean_data_index.xlsx")   
+dict_dataframes_future = dictmap_load(path = "../../data/interim/clean_data_future.xlsx")
 
 dict_dataframes = dictmap_datetime(dict_dataframes)   
 dict_dataframes_index = dictmap_datetime(dict_dataframes_index)
@@ -182,8 +184,8 @@ dict_dataframes_future = dictmap_datetime(dict_dataframes_future)
 # print(dict_dataframes_future['csi300 index future data'].info())
 
 # Save cleaned data with datetime index in data/interim folder - overwrite previous data
-frames_to_excel(dict_dataframes,"../data/interim/clean_data.xlsx")
-frames_to_excel(dict_dataframes_index,"../data/interim/clean_data_index.xlsx")
-frames_to_excel(dict_dataframes_future,"../data/interim/clean_data_future.xlsx")
+frames_to_excel(dict_dataframes,"../../data/interim/clean_data.xlsx")
+frames_to_excel(dict_dataframes_index,"../../data/interim/clean_data_index.xlsx")
+frames_to_excel(dict_dataframes_future,"../../data/interim/clean_data_future.xlsx")
 
 print("clean_dataset - Finished.")

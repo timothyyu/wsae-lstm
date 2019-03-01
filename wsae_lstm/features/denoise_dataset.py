@@ -8,7 +8,7 @@ from collections import OrderedDict
 import copy
 
 import sys
-sys.path.append('../')  
+sys.path.append('../..')  
 
 import pywt
 from pywt import wavedec, waverec
@@ -31,6 +31,7 @@ from wsae_lstm.utils import dictmap_load,pickle_load,pickle_save
 
 # http://connor-johnson.com/2016/01/24/using-pywavelets-to-remove-high-frequency-noise/
 # https://pywavelets.readthedocs.io/en/latest/ref/signal-extension-modes.html#ref-modes
+# https://pywavelets.readthedocs.io/en/latest/ref/thresholding-functions.html
 
 def waveletSmooth( x, wavelet="haar", level=2, declevel=2):
     # calculate the wavelet coefficients
@@ -55,11 +56,13 @@ def denoise_periods(dict_dataframes):
             ddi_denoised[index_name][value][3] = waveletSmooth(ddi_denoised[index_name][value][3].values)
     return ddi_denoised
 
-dict_dataframes_index=pickle_load(path_filename="../data/interim/cdii_tvt_split.pickle")
-#print(dict_dataframes_index.keys())
+print("denoise_dataset - Start...")
+dict_dataframes_index=pickle_load(path_filename="../../data/interim/cdii_tvt_split.pickle")
 
+#print(dict_dataframes_index.keys())
 # [index data][period 1-24][train/validate/test]
     # Train [1], Validate [2], Test [3]
 
 ddi_denoised=denoise_periods(dict_dataframes_index)
-pickle_save(ddi_denoised,path_filename="../data/interim/cdii_tvt_split_denoised")
+pickle_save(ddi_denoised,path_filename="../../data/interim/cdii_tvt_split_denoised")
+print("denoise_dataset - Finished.")
