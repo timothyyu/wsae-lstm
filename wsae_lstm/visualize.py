@@ -16,6 +16,7 @@ sys.path.append('../')
 import matplotlib.pyplot as plt
 import matplotlib
 from matplotlib.backends.backend_pdf import PdfPages
+import matplotlib.cm as cm
 
 import pywt
 from pywt import wavedec, waverec
@@ -24,40 +25,69 @@ from statsmodels.robust import mad
 
 # Internal Imports
 from wsae_lstm.utils import dictmap_load,pickle_load,pickle_save
-from wsae_lstm.models.wavelet import denoise_periods
+from wsae_lstm.models.wavelet import scale_periods,denoise_periods
 
 dict_dataframes_index=pickle_load(path_filename="../data/interim/cdii_tvt_split.pickle")
 ddi_scaled=pickle_load(path_filename="../data/interim/cdii_tvt_split_scaled.pickle")
 ddi_denoised=pickle_load(path_filename="../data/interim/cdii_tvt_split_scaled_denoised.pickle")
 
-def tvt_display(ddi_denoised):
-    for key, index_name in enumerate(ddi_denoised):
+def tvt_display(dict_dataframes,ddi_scaled,ddi_denoised,fname_extended):
+    for key, index_name in enumerate(dict_dataframes):
         fpath = "../reports"
-        pdf = PdfPages('{}/{} tvt split scale denoise visual.pdf'.format(fpath,index_name))
+        pdf = PdfPages('{}/{} {}.pdf'.format(fpath,index_name,fname_extended))
+
         for index,value in enumerate(dict_dataframes_index[index_name]): 
-            fig, axes= plt.subplots(1, 3,constrained_layout=False,figsize=(12,4))
+            fig, axes= plt.subplots(3, 3,constrained_layout=False,figsize=(12,12))
             fig.suptitle('{}, period: {}'.format(index_name,value))
-            fig.subplots_adjust(top=0.88)
+            #fig.subplots_adjust(top=0.88)
+
+            colormap =cm.get_cmap('tab20')
+            colors = [colormap(i) for i in np.linspace(0, 1,20)]
+
+            axes[0,0].set_prop_cycle('color', colors)
+            axes[0,0].set_prop_cycle('color', colors)
+            axes[0,0].set_prop_cycle('color', colors)
+            axes[1,0].set_prop_cycle('color', colors)
+            axes[1,1].set_prop_cycle('color', colors)
+            axes[1,2].set_prop_cycle('color', colors)
+            axes[2,0].set_prop_cycle('color', colors)
+            axes[2,1].set_prop_cycle('color', colors)
+            axes[2,2].set_prop_cycle('color', colors)
+
+            axes[0,0].set_title('Train')
+            axes[0,0].plot(dict_dataframes[index_name][value][1].values,label='train data')
+            axes[0,1].set_title('Train - scaled')
+            axes[0,1].plot(ddi_scaled[index_name][value][1],label='scaled train data')
+            axes[0,2].set_title('Train - scaled, denoised')
+            axes[0,2].plot(ddi_denoised[index_name][value][1],label='scaled, denoised train data')
+
+            axes[1,0].set_title('Validate')
+            axes[1,0].plot(dict_dataframes[index_name][value][2].values,label='validate data')
+            axes[1,1].set_title('Validate - scaled')
+            axes[1,1].plot(ddi_scaled[index_name][value][2],label='scaled validate data')
+            axes[1,2].set_title('Validate - scaled, denoised')
+            axes[1,2].plot(ddi_denoised[index_name][value][2],label='scaled,denoised validate data')
+
+            axes[2,0].set_title('Test')
+            axes[2,0].plot(dict_dataframes[index_name][value][3].values,label='test data')
+            axes[2,1].set_title('Test - scaled')
+            axes[2,1].plot(ddi_scaled[index_name][value][3],label='scaled test data')
+            axes[2,2].set_title('Test - scaled, denoised')
+            axes[2,2].plot(ddi_denoised[index_name][value][3],label='scaled,denoised test data')
+
             
-            axes[0].set_title('Train')
-            axes[0].plot(ddi_denoised[index_name][value][1],label='denoised train data')
-            #axes[0].plot(ddi_scaled[index_name][value][1].values,alpha=0.5, label='train data')
-
-            axes[1].set_title('Validate')
-            axes[1].plot(ddi_denoised[index_name][value][2],label='denoised validate data')
-            #axes[1].plot(ddi_scaled[index_name][value][2].values,alpha=0.5,label='validate data')
-
-            axes[2].set_title('Test')
-            axes[2].plot(ddi_denoised[index_name][value][3],label='denoised test data')
-            #axes[2].plot(ddi_scaled[index_name][value][3].values,alpha=0.5,label='test data')
+            # handles, labels = plt.gca().get_legend_handles_labels()
+            # by_label = OrderedDict(zip(labels, handles))
+            # plt.legend(by_label.values(), by_label.keys())
             
-#             handles, labels = plt.gca().get_legend_handles_labels()
-#             by_label = OrderedDict(zip(labels, handles))
-#             plt.legend(by_label.values(), by_label.keys())
-
+            art = list(ddi_denoised[index_name][value][3].columns)
+            
+            axes[2,1].legend(art,loc='upper center',bbox_to_anchor=(0.5, -0.1),
+                ncol=5,fancybox=True,shadow=True)
             #plt.tight_layout()
             #plt.show()
-            pdf.savefig(fig)
+            pdf.savefig(fig,bbox_inches="tight",additional_artists=art)
             plt.close()
-        pdf.close()    
-tvt_display(ddi_denoised)    
+        pdf.close()
+
+tvt_display(dict_dataframes_index,ddi_scaled,ddi_denoised,'tvt split scale denoise visual')    

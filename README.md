@@ -4,6 +4,9 @@ Repository that aims to implement the WSAE-LSTM model and replicate the results 
 
 https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0180944
 
+This implementation of the WSAE-LSTM models aims to address potential issues in the implementation of the WSAE-LSTM model as defined by Bao et al. (2017)while also addressing issues in previous attempts to implement and replicate results of said model (i.e. [mlpanda/DeepLearning_Financial](https://github.com/mlpanda/DeepLearning_Financial)). 
+
+
 ## Source journal (APA)
 
 Bao W, Yue J, Rao Y (2017). "A deep learning framework for financial time series using stacked autoencoders and long-short term memory". PLOS ONE 12(7): e0180944. https://doi.org/10.1371/journal.pone.0180944
@@ -24,8 +27,5 @@ Repository package requirements/dependencies are defined in `requirements.txt` f
 
 ### `mlpanda/DeepLearning_Financial`:
 
-Repository of an existing attempt to replicate above paper in PyTorch: [mlpanda/DeepLearning_Financial:](https://github.com/mlpanda/DeepLearning_Financial)
+Repository of an existing attempt to replicate above paper in PyTorch: [mlpanda/DeepLearning_Financial](https://github.com/mlpanda/DeepLearning_Financial)
 , checked out as a `git-subrepo` for reference in `submodules` folder. 
-
-
-
