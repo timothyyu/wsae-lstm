@@ -4,7 +4,7 @@ Repository that aims to implement the WSAE-LSTM model and replicate the results 
 
 https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0180944
 
-This implementation of the WSAE-LSTM models aims to address potential issues in the implementation of the WSAE-LSTM model as defined by Bao et al. (2017)while also addressing issues in previous attempts to implement and replicate results of said model (i.e. [mlpanda/DeepLearning_Financial](https://github.com/mlpanda/DeepLearning_Financial)). 
+This implementation of the WSAE-LSTM models aims to address potential issues in the implementation of the WSAE-LSTM model as defined by Bao et al. (2017) while also addressing issues in previous attempts to implement and replicate results of said model (i.e. [mlpanda/DeepLearning_Financial](https://github.com/mlpanda/DeepLearning_Financial)). 
 
 
 ## Source journal (APA)
@@ -15,7 +15,7 @@ Bao W, Yue J, Rao Y (2017). "A deep learning framework for financial time series
 
 ![wsae lstm model funnel diagram](https://github.com/timothyyu/wsae-lstm/blob/master/docs/wsae%20lstm%20model%20funnel%20diagram.png)
 
-### Source journal data (saved into `data/raw` folder):
+### Source journal data (saved into `data/raw` folder as `raw_data.xlsx`):
 DOI:10.6084/m9.figshare.5028110
 https://figshare.com/articles/Raw_Data/5028110
 

@@ -1,18 +1,11 @@
 # Imports (External)
 import numpy as np
-import pandas as pd
-import datetime as dt
-from collections import OrderedDict
-import copy
-
 import sys
 sys.path.append('../..')  
-
 import pywt
 from pywt import wavedec, waverec
-from scipy import signal
 from statsmodels.robust import mad
-from sklearn import preprocessing
+
 
 #Internal Imports
 
@@ -41,48 +34,6 @@ def waveletSmooth( x, wavelet="haar", level=2, declevel=2):
     coeff[1:] = ( pywt.threshold( i, value=uthresh, mode="hard" ) for i in coeff[1:] )
     # reconstruct the signal using the thresholded coefficients
     y = pywt.waverec( coeff, wavelet, mode='periodization',axis=0 )
+   
     return y
-
-def scale_periods(dict_dataframes):
-    
-    ddi_scaled = dict()
-    for key, index_name in enumerate(dict_dataframes):
-        ddi_scaled[index_name] = copy.deepcopy(dict_dataframes[index_name])
-    for key, index_name in enumerate(ddi_scaled): 
-
-        scaler = preprocessing.RobustScaler(with_centering=True)
-
-        for index,value in enumerate(ddi_scaled[index_name]):
-            X_train = ddi_scaled[index_name][value][1]
-            X_train_scaled = scaler.fit_transform(X_train)
-            X_train_scaled_df = pd.DataFrame(X_train_scaled,columns=list(X_train.columns))
-            
-            X_val = ddi_scaled[index_name][value][2]
-            X_val_scaled = scaler.transform(X_val)
-            X_val_scaled_df = pd.DataFrame(X_val_scaled,columns=list(X_val.columns))
-            
-            X_test = ddi_scaled[index_name][value][3]
-            X_test_scaled = scaler.transform(X_test)
-            X_test_scaled_df = pd.DataFrame(X_test_scaled,columns=list(X_test.columns))
-            
-            ddi_scaled[index_name][value][1] = X_train_scaled_df
-            ddi_scaled[index_name][value][2] = X_val_scaled_df
-            ddi_scaled[index_name][value][3] = X_test_scaled_df
-    return ddi_scaled
-
-def denoise_periods(dict_dataframes):
-    ddi_denoised= dict() 
-    for key, index_name in enumerate(dict_dataframes):
-        ddi_denoised[index_name] = copy.deepcopy(dict_dataframes[index_name])
-    for key, index_name in enumerate(ddi_denoised): 
-        for index,value in enumerate(ddi_denoised[index_name]):
-            
-            X_train_scaled = ddi_denoised[index_name][value][1]
-            X_val_scaled = ddi_denoised[index_name][value][2]
-            X_test_scaled = ddi_denoised[index_name][value][3]
-                                                          
-            ddi_denoised[index_name][value][1] = pd.DataFrame(waveletSmooth(X_train_scaled),columns=list(X_train_scaled.columns))
-            ddi_denoised[index_name][value][2] = pd.DataFrame(waveletSmooth(X_val_scaled),columns=list(X_val_scaled.columns))
-            ddi_denoised[index_name][value][3] = pd.DataFrame(waveletSmooth(X_test_scaled),columns=list(X_test_scaled.columns))
-            
-    return ddi_denoised
+    #return y,sigma,uthresh
