@@ -7,6 +7,8 @@ import xlsxwriter
 from collections import OrderedDict
 from monthdelta import monthdelta
 import pickle
+import copy
+
 import sys
 sys.path.append("../")  
 
@@ -71,7 +73,7 @@ def dict_interval_split(dict_dataframes):
 
 def pickle_save(dict_dataframes,path_filename):
     filename = path_filename
-    outfile = open(filename,'wb')
+    outfile = open(filename + '.pickle','wb')
     pickle.dump(dict_dataframes,outfile)
     outfile.close()
 
@@ -80,3 +82,33 @@ def pickle_load(path_filename):
     dict_dataframes = pickle.load(infile)
     infile.close()
     return dict_dataframes
+
+def tvt_split(df):
+    """Train-Validate-Test split of data for continous training 
+    as defined in Bao et al., 2017."""
+    dict_dataframes = {}
+    train = df.index[0]
+    validate = df.index[0] + monthdelta(24) 
+    test = df.index[0] + monthdelta(27) 
+    test_end = df.index[0] + monthdelta(30) 
+    df_train = pd.DataFrame(df[(df.index >= train) & (df.index <= validate)])
+    df_validate = pd.DataFrame(df[(df.index >= validate) & (df.index <= test)])
+    df_test = pd.DataFrame(df[(df.index >= test) & (df.index <= test_end)])
+    dict_dataframes ={1:df_train,2:df_validate,3:df_test}
+    return dict_dataframes
+
+def dict_df_tvt_split(df):
+    """Subfunction of dd_tvt_split()."""
+    subdict_dataframes = {}
+    for key in df:
+        subdict_dataframes[key] =tvt_split(df[key])
+    return subdict_dataframes
+
+def dd_tvt_split(dict_dataframes):
+    """Train-Validate-Test split of data applied to each index dataset as defined
+    in Bao et al., 2017. """
+    subdict_dataframes = {}
+    for key in dict_dataframes:
+        #print(key)
+        subdict_dataframes[key] = dict_df_tvt_split(dict_dataframes[key])
+    return subdict_dataframes
