@@ -28,4 +28,4 @@ Repository package requirements/dependencies are defined in `requirements.txt` f
 ### `mlpanda/DeepLearning_Financial`:
 
 Repository of an existing attempt to replicate above paper in PyTorch: [mlpanda/DeepLearning_Financial](https://github.com/mlpanda/DeepLearning_Financial)
-, checked out as a `git-subrepo` for reference in `submodules` folder. 
+, checked out as a `git-subrepo` for reference in `submodules` folder. This repository, (`subrepos/DeepLearning_Financial`) will be used as a point of reference and/or comparison for specific components in `wsae-lstm`.
