@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mlpanda/DeepLearning_Financial
+	branch = master
+	commit = 7e846144629d8b49b8fd74a87d5ff047b7af55d1
+	parent = ebfdea97b08b480ee96439155d649e4be5e021a0
+	method = merge
+	cmdver = 0.4.0
