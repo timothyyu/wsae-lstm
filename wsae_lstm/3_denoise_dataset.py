@@ -5,8 +5,8 @@ import copy
 import sys
 sys.path.append('../..')  
 #Internal Imports
-from wsae_lstm import pickle_load,pickle_save
-from wsae_lstm.models.wavelet import waveletSmooth 
+from utils import pickle_load,pickle_save
+from models.wavelet import waveletSmooth 
 
 def denoise_periods(dict_dataframes):
 
@@ -31,3 +31,10 @@ def denoise_periods(dict_dataframes):
             ddi_denoised[index_name][value][3] = X_test_scaled_denoised_df    
 
     return ddi_denoised
+
+
+print("denoise_dataset - Start...")
+ddi_scaled=pickle_load(path_filename="../data/interim/cdii_tvt_split_scaled.pickle")
+ddi_denoised= denoise_periods(ddi_scaled)
+pickle_save(ddi_denoised,path_filename="../data/interim/cdii_tvt_split_scaled_denoised")
+print("denoise_dataset - Finished.")

@@ -6,7 +6,7 @@ import sys
 sys.path.append('../..')  
 from sklearn import preprocessing
 #Internal Imports
-from wsae_lstm import pickle_load,pickle_save
+from utils import pickle_load,pickle_save
 
 
 def scale_periods(dict_dataframes):
@@ -41,3 +41,10 @@ def scale_periods(dict_dataframes):
             ddi_scaled[index_name][value]['scaler_params'] = scaler.get_params(deep=True)
         
     return ddi_scaled
+
+
+dict_dataframes_index=pickle_load(path_filename="../data/interim/cdii_tvt_split.pickle")
+print("scale_dataset - Start...")
+ddi_scaled = scale_periods(dict_dataframes_index)
+pickle_save(ddi_scaled,path_filename="../data/interim/cdii_tvt_split_scaled")
+print("scale_dataset - Finished.")
