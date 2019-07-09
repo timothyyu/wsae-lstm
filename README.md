@@ -4,7 +4,7 @@ Repository that aims to implement the WSAE-LSTM model and replicate the results 
 
 https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0180944
 
-This implementation of the WSAE-LSTM models aims to address potential issues in the implementation of the WSAE-LSTM model as defined by Bao et al. (2017) while also addressing issues in previous attempts to implement and replicate results of said model (i.e. [mlpanda/DeepLearning_Financial](https://github.com/mlpanda/DeepLearning_Financial)). 
+This implementation of the WSAE-LSTM model aims to address potential issues in the implementation model as defined by Bao et al. (2017) while also simultaneously addressing issues in previous attempts to implement and replicate results of said model (i.e. [mlpanda/DeepLearning_Financial](https://github.com/mlpanda/DeepLearning_Financial)). 
 
 
 ## Source journal (APA)
@@ -27,5 +27,4 @@ Repository package requirements/dependencies are defined in `requirements.txt` f
 
 ### `mlpanda/DeepLearning_Financial`:
 
-Repository of an existing attempt to replicate above paper in PyTorch: [mlpanda/DeepLearning_Financial](https://github.com/mlpanda/DeepLearning_Financial)
-, checked out as a `git-subrepo` for reference in `submodules` folder. This repository, (`subrepos/DeepLearning_Financial`) will be used as a point of reference and/or comparison for specific components in `wsae-lstm`.
+Repository of an existing attempt to replicate above paper in PyTorch ([mlpanda/DeepLearning_Financial](https://github.com/mlpanda/DeepLearning_Financial)), checked out as a `git-subrepo` for reference in the`subrepos`directory. This repository, `subrepos/DeepLearning_Financial`, will be used as a point of reference and comparison for specific components in `wsae-lstm`.
