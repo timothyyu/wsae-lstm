@@ -14,3 +14,6 @@ Frazier, Michael. (1995). A Friendly Guide to Wavelets (Gerald Kaiser). Siam Rev
 
 Forecasting East Asian Indices Futures via a Novel Hybrid of Wavelet-PCA Denoising and Artificial Neural Network Models 
 Chan Phooi M’ng J, Mehralizadeh M (2016) Forecasting East Asian Indices Futures via a Novel Hybrid of Wavelet-PCA Denoising and Artificial Neural Network Models. PLOS ONE 11(6): e0156338. https://doi.org/10.1371/journal.pone.0156338
+
+Z. Li and V. Tam, "Combining the real-time wavelet denoising and long-short-term-memory neural network for predicting stock indexes," *2017 IEEE Symposium Series on Computational Intelligence (SSCI)*, Honolulu, HI, 2017, pp. 1-8.
+doi: 10.1109/SSCI.2017.8280883
